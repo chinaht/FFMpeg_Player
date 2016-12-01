@@ -7,13 +7,7 @@
 //
 
 #import "ViewController.h"
-//#import "avcodec.h"
-//#import "avdevice.h"
-//#import "avfilter.h"
-//#import "avformat.h"
-//#import "avutil.h"
-//#import "swscale.h"
-//#import "dict.h"
+
 #import "frame.h"
 #import "avformat.h"
 #import "avcodec.h"
@@ -73,6 +67,7 @@
         NSLog(@"not find video and audio stream");
         return;
     }
+    pCodeContext = avcodec_alloc_context3(NULL);
     avcodec_parameters_to_context(pCodeContext, formatContext->streams[videoStream]->codecpar);
     
     pCodec = avcodec_find_decoder(formatContext->streams[videoStream]->codecpar->codec_id);
@@ -89,8 +84,7 @@
     }
     pFrame = av_frame_alloc();
     NSLog(@"width:%i,height:%i",pCodeContext->width,pCodeContext->height);
-//    pCodec = formatContext->streams[videoStream]->codecpar->codec_id;
-//    AVCodec *
+
 
 }
 
